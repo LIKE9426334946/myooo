@@ -1,4 +1,5 @@
-print("hello")
-print("world")
+import torch
 
-print("This is a sample Python script.")
+print(torch.__version__)
+
+
