@@ -1,5 +1,8 @@
 import torch
 
-print(torch.__version__)
+x=torch.arange(5)
+
+x.flatten()
 
 
+a="one"
