@@ -4,7 +4,7 @@ import json
 
 torch.manual_seed(23)
 
-m = nn.Conv2d(3, 1, kernel_size=2)
+m = nn.Conv2d(3, 2, kernel_size=2)
 
 weight_list = m.weight.detach().tolist()
 bias_list = m.bias.detach().tolist()
