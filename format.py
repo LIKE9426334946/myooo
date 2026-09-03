@@ -15,5 +15,7 @@ a2 = np.random.randint(0, 10, (2, 4, 3))
 
 c = np.matmul(a1, a2)
 
-a = torch.randn(2, 3, 4)
-b = torch.randn(2, 4, 3)
+a = torch.randn(2, 5)
+b = torch.randn(5)
+c = torch.matmul(a, b)
+c.shape = 2
