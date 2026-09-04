@@ -1,21 +1,8 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
-m = nn.Conv1d(3, 2, 2)
-m.weight
-m.bias
-
-input = torch.randn(2, 3, 4)
-
-output = m(input)
-a1 = np.random.randint(0, 10, (2, 3, 4))
-
-
-a2 = np.random.randint(0, 10, (2, 4, 3))
-
-c = np.matmul(a1, a2)
-
-a = torch.randn(2, 5)
-b = torch.randn(5)
-c = torch.matmul(a, b)
-c.shape = 2
+identity = torch.randint(0, 10, (10, 2, 64, 64))
+identity = F.pad(identity, pad=(0, 0, 0, 0, 0, 1), mode="constant", value=0.0)
+identity.shape
+torch.Size([10, 3, 64, 64])

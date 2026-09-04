@@ -1,18 +1,15 @@
-# Image Classification
 import torch
-from torchvision.transforms import v2
 
-H, W = 32, 32
-img = torch.randint(0, 256, size=(3, H, W), dtype=torch.uint8)
+from model import resnet18
 
 
+# 1. 创建模型
+model = resnet18()
 
-transforms = v2.Compose([
-    v2.RandomResizedCrop(size=(224, 224), antialias=True),
-    v2.RandomHorizontalFlip(p=0.5),
-    v2.ToDtype(torch.float32, scale=True),
-    v2.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-])
-img = transforms(img)
+# 2. 构造输入：[batch_size, channels, height, width]
+x = torch.randn(2, 3, 224, 224)
 
-print("end")
+# 3. 前向传播
+output = model(x)
+
+print(output.shape)

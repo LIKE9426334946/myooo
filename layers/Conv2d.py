@@ -26,3 +26,4 @@ with open("json_file/Conv2d/input.json", "w") as f:
 output = m(input)
 with open("json_file/Conv2d/output.json", "w") as f:
     json.dump(output.tolist(), f)
+print(output.shape)
