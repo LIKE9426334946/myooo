@@ -2,7 +2,6 @@ import torch
 
 from model import resnet18
 
-
 # 1. 创建模型
 model = resnet18()
 

@@ -8,7 +8,6 @@ This file focuses on the model and forward data flow. Dataset loading, training,
 optimization, checkpointing, and distributed systems are intentionally omitted.
 """
 
-
 import torch
 from torch import Tensor, nn
 import torch.nn.functional as F
@@ -16,6 +15,7 @@ import torch.nn.functional as F
 from blocks import BasicBlock, Bottleneck, OptionAShortcut, conv1x1
 
 from typing import List, Literal, Sequence, Type, Union
+
 BlockType = Type[Union[BasicBlock, Bottleneck]]
 ShortcutOption = Literal["A", "B", "C"]
 
@@ -59,6 +59,7 @@ def make_shortcut(
 class ImageNetResNet(nn.Module):
     """ImageNet ResNet family described in Table 1 of the paper."""
 
+    # 这里的block是一个类，可以用这个类构造对象
     def __init__(
         self,
         block: BlockType,
@@ -74,6 +75,7 @@ class ImageNetResNet(nn.Module):
         self.shortcut_option = shortcut_option
 
         # Table 1 stem: 224x224 -> 112x112 -> 56x56.
+        # 构造模块，此时还没有数据流动过程
         self.conv1 = nn.Conv2d(
             3,
             64,
@@ -111,9 +113,9 @@ class ImageNetResNet(nn.Module):
             out_channels,
             stride,
             self.shortcut_option,
-        )
+        ) # 使用resnet18时，这里返回的是一个nn.Identity()，不对数据做任何操作
 
-        blocks: List[nn.Module] = [
+        blocks: List[nn.Module] = [ # 这里创建的是残差块对象
             block(
                 self.in_channels,
                 channels,
