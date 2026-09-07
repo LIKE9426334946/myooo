@@ -12,3 +12,7 @@ a2 = torch.std(input, correction=0, dim=(0, 2, 3))
 print(f"{input=}")
 print(f"{output=}")
 print(a1, a2)
+
+
+figure = plt.figure(figsize=(8, 8))
+figure.add_subplot(3, 3, 4)
